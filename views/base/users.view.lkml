@@ -14,6 +14,12 @@ view: users {
     sql: ${TABLE}.age ;;
     label: "Age"
   }
+  dimension: age_tiers {
+    type: tier
+    tiers: [15,26,36,51,66]
+    sql: ${age};;
+    style: integer
+  }
   dimension: city {
     type: string
     sql: ${TABLE}.city ;;
@@ -29,7 +35,7 @@ view: users {
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
     sql: ${TABLE}.created_at ;;
-    label: "Time"
+    label: "Created"
   }
   dimension: email {
     type: string
@@ -45,6 +51,10 @@ view: users {
     type: string
     sql: ${TABLE}.gender ;;
     label: "Gender"
+  }
+  dimension: is_new_customer {
+    type: yesno
+    sql: ${days_from_signup} <= 90 ;;
   }
   dimension: last_name {
     type: string
@@ -76,6 +86,11 @@ view: users {
     sql: ${TABLE}.street_address ;;
     label: "Street Address"
   }
+  dimension: days_from_signup {
+    type: number
+    sql: DATE_DIFF(CURRENT_DATE(),${created_date},day) ;;
+    label: "Days from Signup"
+  }
   dimension: traffic_source {
     type: string
     sql: ${TABLE}.traffic_source ;;
@@ -87,5 +102,10 @@ view: users {
     type: count
     drill_fields: [id, last_name, first_name, events.count, order_items.count]
     label: "Count"
+  }
+  measure: total_users {
+    type: count_distinct
+    sql: ${id} ;;
+    label: "Total Users"
   }
 }

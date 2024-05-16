@@ -19,7 +19,7 @@ view: order_inventory_items_cv {
   measure: gross_margin_percent {
     description: "Total Gross Margin Amount / Total Gross Revenue"
     type:  number
-    sql: ${total_gross_margin_amount} / ${order_items.total_gross_revenue} ;;
+    sql: ${total_gross_margin_amount} / NULLIF(${order_items.total_gross_revenue},0) ;;
     value_format_name: percent_2
     label: "Gross Margin %"
   }

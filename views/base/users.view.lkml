@@ -16,9 +16,11 @@ view: users {
   }
   dimension: age_tiers {
     type: tier
+    description: "Age Tiers of Customers (15-25, 26-35, 36-50, 51-65, 65 & Above"
     tiers: [15,26,36,51,66]
     sql: ${age};;
     style: integer
+    label: "Age Tiers"
   }
   dimension: city {
     type: string
@@ -55,6 +57,11 @@ view: users {
   dimension: is_new_customer {
     type: yesno
     sql: ${days_from_signup} <= 90 ;;
+    label: "New Customer"
+  }
+  dimension: is_long_term_customer{
+    hidden: yes
+    type: string
   }
   dimension: last_name {
     type: string
@@ -70,6 +77,17 @@ view: users {
     type: number
     sql: ${TABLE}.longitude ;;
     label: "Longitude"
+  }
+  dimension: customer_tenure {
+    type: string
+    description: "Breakout of customer tenure: New Customers (signup date <= 90 days) and Longterm Customers (signup date > 90 days)"
+    sql:
+      case
+        when DATE_DIFF(DATE(CURRENT_DATE()),${created_date},DAY) <= 90
+          then 'New Customers'
+        else 'Longterm Customer'
+      end ;;
+    label: "New vs Longterm Customers"
   }
   dimension: postal_code {
     type: string

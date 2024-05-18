@@ -12,6 +12,11 @@ view: order_items_users_cv {
     type: number
     sql: ${order_items.total_sale_price} / ${users.count} ;;
     value_format_name: usd_0
+    drill_fields: [users.gender, users.age_tiers, average_spend_per_customer]
+    link: {
+      label: "Avg Spend per Customer Drill"
+      url:"{{ link }}&f[users.age]=%3E%3D15&sorts=users.gender+desc"
+    }
     label: "Average Spend per Customer"
   }
   view_label: "Order Items"

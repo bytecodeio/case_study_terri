@@ -27,6 +27,7 @@ view: order_inventory_items_cv {
     description: "Total gross margin amount"
     type: sum
     sql: ${gross_margin_amount};;
+    drill_fields: [products.category, products.brand, total_gross_margin_amount]
     value_format_name: usd
   }
   view_label: "Order Items"

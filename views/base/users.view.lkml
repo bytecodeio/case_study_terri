@@ -85,7 +85,7 @@ view: users {
       case
         when DATE_DIFF(DATE(CURRENT_DATE()),${created_date},DAY) <= 90
           then 'New Customers'
-        else 'Existing Customer'
+        else 'Existing Customers'
       end ;;
     label: "New vs Existing Customers"
   }

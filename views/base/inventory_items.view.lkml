@@ -18,7 +18,7 @@ view: inventory_items {
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
     sql: ${TABLE}.created_at ;;
-    label: "Created Date"
+    label: "Created"
   }
   dimension: product_brand {
     type: string

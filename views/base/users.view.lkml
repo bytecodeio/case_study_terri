@@ -59,7 +59,7 @@ view: users {
     sql: ${days_from_signup} <= 90 ;;
     label: "New Customer"
   }
-  dimension: is_long_term_customer{
+  dimension: is_existing_customer{
     hidden: yes
     type: string
   }
@@ -78,16 +78,16 @@ view: users {
     sql: ${TABLE}.longitude ;;
     label: "Longitude"
   }
-  dimension: customer_tenure {
+  dimension: new_vs_existing_customers {
     type: string
-    description: "Breakout of customer tenure: New Customers (signup date <= 90 days) and Longterm Customers (signup date > 90 days)"
+    description: "New Customers (signup date <= 90 days) and Existing Customers (signup date > 90 days)"
     sql:
       case
         when DATE_DIFF(DATE(CURRENT_DATE()),${created_date},DAY) <= 90
           then 'New Customers'
-        else 'Longterm Customer'
+        else 'Existing Customer'
       end ;;
-    label: "New vs Longterm Customers"
+    label: "New vs Existing Customers"
   }
   dimension: postal_code {
     type: string

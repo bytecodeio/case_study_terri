@@ -14,6 +14,14 @@ view: products {
     sql: ${TABLE}.brand ;;
     drill_fields: [category, sku]
     label: "Brand"
+    link: {
+      label: "Google Link"
+      url: "http://www.google.com/search?q={{ value }}"
+    }
+    link: {
+      label: "Facebook Link"
+      url: "http://www.facebook.com/search?q={{ value }}"
+    }
   }
   dimension: category {
     type: string

@@ -14,14 +14,6 @@ view: users {
     sql: ${TABLE}.age ;;
     label: "Age"
   }
-  dimension: age_tiers {
-    type: tier
-    description: "Age Tiers of Customers (15-25, 26-35, 36-50, 51-65, 65 & Above"
-    tiers: [15,26,36,51,66]
-    sql: ${age};;
-    style: integer
-    label: "Age Tiers"
-  }
   dimension: city {
     type: string
     sql: ${TABLE}.city ;;
@@ -54,15 +46,6 @@ view: users {
     sql: ${TABLE}.gender ;;
     label: "Gender"
   }
-  dimension: is_new_customer {
-    type: yesno
-    sql: ${days_from_signup} <= 90 ;;
-    label: "New Customer"
-  }
-  dimension: is_existing_customer{
-    hidden: yes
-    type: string
-  }
   dimension: last_name {
     type: string
     sql: ${TABLE}.last_name ;;
@@ -77,17 +60,6 @@ view: users {
     type: number
     sql: ${TABLE}.longitude ;;
     label: "Longitude"
-  }
-  dimension: new_vs_existing_customers {
-    type: string
-    description: "New Customers (signup date <= 90 days) and Existing Customers (signup date > 90 days)"
-    sql:
-      case
-        when DATE_DIFF(DATE(CURRENT_DATE()),${created_date},DAY) <= 90
-          then 'New Customers'
-        else 'Existing Customers'
-      end ;;
-    label: "New vs Existing Customers"
   }
   dimension: postal_code {
     type: string
@@ -104,11 +76,6 @@ view: users {
     sql: ${TABLE}.street_address ;;
     label: "Street Address"
   }
-  dimension: days_from_signup {
-    type: number
-    sql: DATE_DIFF(CURRENT_DATE(),${created_date},day) ;;
-    label: "Days from Signup"
-  }
   dimension: traffic_source {
     type: string
     sql: ${TABLE}.traffic_source ;;
@@ -120,10 +87,5 @@ view: users {
     type: count
     drill_fields: [id, last_name, first_name, events.count, order_items.count]
     label: "Count"
-  }
-  measure: total_users {
-    type: count_distinct
-    sql: ${id} ;;
-    label: "Total Users"
   }
 }

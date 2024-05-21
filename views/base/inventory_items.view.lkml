@@ -68,24 +68,4 @@ view: inventory_items {
     label: "Sold Date"
   }
 
-  ## MEASURES ##
-  measure: average_cost {
-    description: "Average cost of items sold from inventory"
-    type: average
-    sql: ${cost} ;;
-    value_format_name: usd
-    label: "Average Cost"
-  }
-  measure: count {
-    type: count
-    drill_fields: [id, product_name, products.name, products.id, order_items.count]
-    label: "Count"
-  }
-  measure: total_cost {
-    description: "Total cost of items sold from inventory"
-    type: sum
-    sql: ${cost} ;;
-    value_format_name: usd
-    label: "Total Cost"
-  }
 }

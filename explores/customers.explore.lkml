@@ -1,9 +1,10 @@
-include: "/views/base/users.view"
+# include: "/views/base/users.view"
 include: "/views/base/events.view"
-include: "/views/base/order_items.view"
-include: "/views/base/inventory_items.view"
+# include: "/views/base/order_items.view"
+# include: "/views/base/inventory_items.view"
 include: "/views/cross_view/order_items_users_cv.view"
 include: "/views/view_refinements/order_items.view_refinement.lkml"
+include: "/views/view_refinements/users.view_refinement.lkml"
 
 explore: users {
   label: "Customers"

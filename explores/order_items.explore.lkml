@@ -1,8 +1,6 @@
 # Order Items explore with detailed order information
 
-# include: "/views/base/order_items.view"
 include: "/views/base/users.view"
-# include: "/views/base/inventory_items.view"
 include: "/views/base/products.view"
 include: "/views/base/distribution_centers.view"
 include: "/views/cross_view/order_inventory_items_cv.view"

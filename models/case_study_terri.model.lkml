@@ -1,8 +1,5 @@
 connection: "looker_partner_demo"
 
-# include all the views
-# include: "/views/**/*.view.lkml"
-
 include: "/explores/order_items.explore"
 include: "/explores/customers.explore"
 

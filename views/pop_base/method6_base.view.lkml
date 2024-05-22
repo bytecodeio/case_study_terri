@@ -1,5 +1,7 @@
+# View file used to incorporate Method 6 of PoP filters
 view: method6_base {
-  extension: required
+  extension: required  #view cannot be used on its own amd must be extended - also hides view from end users
+
 #   # ----- USER FILTERS (Period over Period) ----- #
   filter: first_period_filter {
     view_label: "_PoP"

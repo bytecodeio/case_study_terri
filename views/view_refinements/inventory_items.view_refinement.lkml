@@ -1,3 +1,6 @@
+# Refinement view file for any additions to the inventory_items view
+# which will be treated as the raw view file
+
 include: "/views/base/inventory_items.view"
 include: "/views/pop_base/method6_base.view"
 

@@ -1,3 +1,7 @@
+# Refinement view file for any additions to the order_items view
+# which will be treated as the raw view file
+
+
 include: "/views/base/order_items.view"
 include: "/views/pop_base/method6_base.view.lkml"
 

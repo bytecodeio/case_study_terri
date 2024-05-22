@@ -1,4 +1,8 @@
+# Cross view for shared Order Items and User measures
 view: order_items_users_cv {
+  view_label: "Order Items"
+
+  ## MEASURES ##
   measure: users_with_returns_percent {
     description: "% of users with returns"
     type: number
@@ -19,5 +23,4 @@ view: order_items_users_cv {
     }
     label: "Average Spend per Customer"
   }
-  view_label: "Order Items"
 }

@@ -1,3 +1,5 @@
+#Customers explore with user behavior and attributes
+
 # include: "/views/base/users.view"
 include: "/views/base/events.view"
 # include: "/views/base/order_items.view"

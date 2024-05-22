@@ -1,3 +1,5 @@
+# Order Items explore with detailed order information
+
 # include: "/views/base/order_items.view"
 include: "/views/base/users.view"
 # include: "/views/base/inventory_items.view"

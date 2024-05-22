@@ -1,3 +1,6 @@
+# Refinement view file for any additions to the users view
+# which will be treated as the raw view file
+
 include: "/views/base/users.view"
 include: "/views/pop_base/method6_base.view.lkml"
 

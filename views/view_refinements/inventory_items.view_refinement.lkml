@@ -20,7 +20,7 @@ view: +inventory_items {
     description: "Average cost of items sold from inventory"
     type: average
     sql: ${cost} ;;
-    value_format_name: usd
+    value_format_name: usd_0
     label: "Average Cost"
   }
   measure: count {
@@ -32,7 +32,7 @@ view: +inventory_items {
     description: "Total cost of items sold from inventory"
     type: sum
     sql: ${cost} ;;
-    value_format_name: usd
+    value_format_name: usd_0
     label: "Total Cost"
   }
 }

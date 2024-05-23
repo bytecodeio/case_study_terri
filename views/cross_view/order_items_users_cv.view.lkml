@@ -8,7 +8,7 @@ view: order_items_users_cv {
     type: number
     sql: 1.0 * ${order_items.count_customers_returning_items}
       / NULLIF(${users.count},0);;
-    value_format_name: percent_2
+    value_format_name: percent_1
     label: "% of Users with Returns"
   }
   measure: average_spend_per_customer {

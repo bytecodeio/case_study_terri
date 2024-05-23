@@ -21,14 +21,14 @@ view: +order_items {
     description: "Average sale price of items sold"
       type: average
       sql: ${sale_price} ;;
-      value_format_name: usd
+      value_format_name: usd_0
       label: "Average Sale Price"
   }
   measure: cumulative_total_sales {
     description: "Running total of total sales from items sold"
     type: running_total
     sql: ${total_sale_price} ;;
-    value_format_name: usd
+    value_format_name: usd_0
     label: "Cumulative Total Sales"
   }
   measure: count_items_returned {
@@ -49,7 +49,7 @@ view: +order_items {
     description: "Total sales from items sold"
     type: sum
     sql: ${sale_price} ;;
-    value_format_name: usd
+    value_format_name: usd_0
     label: "Total Sale Price"
   }
   measure: total_gross_revenue {
@@ -57,7 +57,7 @@ view: +order_items {
     type: sum
     sql: ${sale_price} ;;
     filters: [status: "-Cancelled, -Returned"]
-    value_format_name: usd
+    value_format_name: usd_0
   }
 
 

@@ -68,6 +68,12 @@ view: order_items {
     label: "User ID"
   }
 
+  measure: total_orders {
+    type: count_distinct
+    sql: ${order_id} ;;
+    label: "Total Orders"
+  }
+
 
   # ----- Sets of fields for drilling ------
   set: detail {

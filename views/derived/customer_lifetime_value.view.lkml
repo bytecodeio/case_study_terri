@@ -10,7 +10,7 @@ view: customer_lifetime_value {
               when status not in ('Cancelled', 'Returned')
             then sale_price end)
          as customer_lifetime_revenue
-      from `looker_partner_demo.looker-partners.order_items`
+      from `looker-partners.thelook.order_items`
       group by 1 ;;
   }
 

@@ -35,7 +35,7 @@ view: +customer_lifetime_value {
   dimension: order_tiers {
     type: tier
     description: "Lifetime order tiers"
-    tiers: [1,2,5,9,10]
+    tiers: [1,2,3,6,10]
     sql: ${customer_lifetime_orders} ;;
     style: integer
     label: "Lifetime Order Tiers"
@@ -44,7 +44,7 @@ view: +customer_lifetime_value {
   dimension: revenue_tiers {
     type: tier
     description: "Lifetime revenue tiers"
-    tiers: [4.99,19.99,49.99,99.99,499.99,999.99,1000.00]
+    tiers: [5,20,50,100,500,1000]
     sql: ${customer_lifetime_revenue} ;;
     style: integer
     label: "Lifetime Revenue Tiers"
@@ -71,6 +71,12 @@ view: +customer_lifetime_value {
     sql: ${customer_lifetime_revenue} ;;
     value_format_name: usd_0
     label: "Average Lifetime Revenue"
+  }
+
+  measure: total_customers {
+    type: count_distinct
+    sql: ${user_id} ;;
+    label: "Total Customers"
   }
 
   measure: total_lifetime_orders {

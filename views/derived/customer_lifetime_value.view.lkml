@@ -47,6 +47,7 @@ view: customer_lifetime_value {
   }
 
   dimension: user_id {
+    primary_key: yes
     type: number
     description: "Unique user ID associated with an order"
     sql: ${TABLE}.user_id ;;

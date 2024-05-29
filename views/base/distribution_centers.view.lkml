@@ -5,6 +5,7 @@ view: distribution_centers {
   ## DIMENSIONS ##
   dimension: id {
     primary_key: yes
+    hidden: yes
     type: number
     sql: ${TABLE}.id ;;
     label: "ID"

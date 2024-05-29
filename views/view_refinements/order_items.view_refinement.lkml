@@ -45,6 +45,20 @@ view: +order_items {
     filters: [status: "Returned"]
     label: "Number of Customers Returning Items"
   }
+  measure: first_order_date {
+    type: date
+    hidden: yes
+    sql: min(${created_date}) ;;
+    convert_tz: no
+    label: "First Order Date"
+  }
+  measure: last_order_date {
+    type: date
+    hidden: yes
+    sql: max(${created_date}) ;;
+    convert_tz: no
+    label: "Last Order Date"
+  }
   measure: total_sale_price {
     description: "Total sales from items sold"
     type: sum

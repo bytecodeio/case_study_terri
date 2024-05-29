@@ -34,9 +34,9 @@ explore: order_items {
     sql_on: ${products.distribution_center_id} = ${distribution_centers.id} ;;
     relationship: many_to_one
   }
-  join: customer_lifetime_value {
+  join: customer_lifetime_value_ndt {
     type: left_outer
-    sql_on: ${order_items.user_id} = ${customer_lifetime_value.user_id} ;;
+    sql_on: ${order_items.user_id} = ${customer_lifetime_value_ndt.user_id} ;;
     relationship: many_to_one
   }
   join: order_inventory_items_cv {

@@ -3,10 +3,10 @@
 
 
 include: "/views/base/order_items.view"
-include: "/views/pop_base/method6_base.view.lkml"
+include: "/views/pop_base/method2_base.view.lkml"
 
 view: +order_items {
-  extends: [method6_base]
+  extends: [method2_base]
 
   ## DIMENSIONS ##
   dimension_group: pop_date_field {

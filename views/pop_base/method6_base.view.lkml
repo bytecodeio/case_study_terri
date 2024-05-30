@@ -21,7 +21,7 @@ view: method6_base {
 
   dimension_group: pop_date_field {
     type: time
-    sql:  ;;
+    # sql: "Must be overwritten within a refinement or extension";;
     timeframes: [date,raw]
   }
   dimension: days_from_start_first {

@@ -12,7 +12,20 @@ view: order_items {
   }
   dimension_group: created {
     type: time
-    timeframes: [raw, time, date, week, month, quarter, year]
+    timeframes: [
+      raw,
+      time,
+      date,
+      day_of_week,
+      day_of_week_index,
+      day_of_year,
+      week,
+      month,
+      month_name,
+      month_num,
+      day_of_month,
+      quarter,
+      year]
     sql: ${TABLE}.created_at ;;
     label: "Created"
   }

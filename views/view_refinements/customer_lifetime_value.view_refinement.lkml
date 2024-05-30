@@ -3,15 +3,15 @@
 
 
 include: "/views/derived/customer_lifetime_value_ndt.view"
-include: "/views/pop_base/method6_base.view.lkml"
+include: "/views/pop_base/method2_base.view.lkml"
 
 view: +customer_lifetime_value_ndt {
-  extends: [method6_base]
+  # extends: [method2_base]
 
   ## DIMENSIONS ##
-  dimension_group: pop_date_field {
-    sql: ${first_order_date_raw} ;;
-  }
+  # dimension_group: pop_date_field {
+  #   sql: ${first_order_date_raw} ;;
+  # }
 
   dimension: days_from_last_order {
     type: number
@@ -35,11 +35,11 @@ view: +customer_lifetime_value_ndt {
 
   dimension: order_tiers {
     type: tier
-    description: "Lifetime order tiers"
+    description: "Lifetime number of orders grouped by tier"
     tiers: [1,2,3,6,10]
     sql: ${customer_lifetime_orders} ;;
     style: integer
-    label: "Lifetime # of Order Tiers"
+    label: "Lifetime Order Tiers"
   }
 
   dimension: revenue_tiers {
@@ -65,6 +65,14 @@ view: +customer_lifetime_value_ndt {
   }
 
   ## MEASURES ##
+  measure: active_customer_rate {
+    type: number
+    description: "Percent of users that have made an order within the last 90 days"
+    sql: ${total_active_users} / NULLIF(${total_customers},0) ;;
+    value_format_name: percent_1
+    label: "Active Customer Percentage"
+  }
+
   measure: average_days_since_last_order {
     type: average
     description: "Average number of days since customers have placed their last order"
@@ -85,6 +93,14 @@ view: +customer_lifetime_value_ndt {
     sql: ${customer_lifetime_revenue} ;;
     value_format_name: usd_0
     label: "Average Lifetime Revenue"
+  }
+
+  measure: repeat_purchase_rate {
+    type: number
+    description: "Percent of users that have made more than 1 order"
+    sql: ${total_repeat_users} / NULLIF(${total_customers},0) ;;
+    value_format_name: percent_1
+    label: "Repeat Customer Percentage"
   }
 
   measure: total_customers {

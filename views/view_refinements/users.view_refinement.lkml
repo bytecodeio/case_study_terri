@@ -2,10 +2,10 @@
 # which will be treated as the raw view file
 
 include: "/views/base/users.view"
-include: "/views/pop_base/method6_base.view.lkml"
+include: "/views/pop_base/method2_base.view.lkml"
 
 view: +users {
-  extends: [method6_base]
+  extends: [method2_base]
   dimension_group: pop_date_field {
     sql: ${created_raw} ;;
   }

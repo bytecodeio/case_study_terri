@@ -22,7 +22,6 @@ view: customer_lifetime_value_ndt {
     sql: ${TABLE}.total_orders ;;
     label: "Customer Lifetime Orders"
   }
-
   dimension: customer_lifetime_revenue {
     type: number
     description: "The total revenue by customer"
@@ -39,16 +38,39 @@ view: customer_lifetime_value_ndt {
   dimension_group: first_order_date {
     type: time
     description: "The first order date for a customer"
-    timeframes: [raw, time, date, week, month, quarter, year]
+    timeframes: [raw,
+      time,
+      date,
+      day_of_week,
+      day_of_week_index,
+      day_of_year,
+      week,
+      month,
+      month_name,
+      month_num,
+      day_of_month,
+      quarter,
+      year]
     convert_tz: no
     sql: ${TABLE}.first_order_date ;;
     label: "First Order"
-
   }
   dimension_group: last_order_date {
     type: time
     description: "The latest order date of a customer"
-    timeframes: [raw, time, date, week, month, quarter, year]
+    timeframes: [raw,
+      time,
+      date,
+      day_of_week,
+      day_of_week_index,
+      day_of_year,
+      week,
+      month,
+      month_name,
+      month_num,
+      day_of_month,
+      quarter,
+      year]
     convert_tz: no
     sql: ${TABLE}.last_order_date;;
     label: "Last Order"

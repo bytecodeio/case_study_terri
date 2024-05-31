@@ -5,12 +5,12 @@ include: "/views/base/inventory_items.view"
 include: "/views/pop_base/method2_base.view"
 
 view: +inventory_items {
-  extends: [method2_base]
+  # extends: [method2_base]
 
   ## DIMENSIONS ##
-  dimension_group: pop_date_field {
-    sql: ${created_raw} ;;
-  }
+  # dimension_group: pop_date_field {
+  #   sql: ${created_raw} ;;
+  # }
   dimension: id {
     hidden: yes
   }

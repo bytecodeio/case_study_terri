@@ -2,7 +2,7 @@
 # which will be treated as the raw view file
 
 include: "/views/base/inventory_items.view"
-include: "/views/pop_base/method2_base.view"
+# include: "/views/pop_base/method2_base.view"
 
 view: +inventory_items {
   # extends: [method2_base]

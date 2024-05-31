@@ -3,7 +3,7 @@
 
 
 include: "/views/derived/customer_lifetime_value_ndt.view"
-include: "/views/pop_base/method2_base.view.lkml"
+# include: "/views/pop_base/method2_base.view.lkml"
 
 view: +customer_lifetime_value_ndt {
   # extends: [method2_base]

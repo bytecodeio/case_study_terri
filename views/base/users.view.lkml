@@ -24,6 +24,7 @@ view: users {
     type: string
     map_layer_name: countries
     sql: ${TABLE}.country ;;
+    drill_fields: [users.id, order_items_users_cv.total_gross_revenue]
     label: "Country"
   }
   dimension_group: created {

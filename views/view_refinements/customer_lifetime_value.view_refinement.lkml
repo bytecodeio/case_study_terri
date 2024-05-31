@@ -53,6 +53,7 @@ view: +customer_lifetime_value_ndt {
   dimension: revenue_tiers_clean {
     type: string
     description: "Lifetime revenue tiers"
+    order_by_field: revenue_tiers_sort
     sql: case
             when ${revenue_tiers} = "Below 5" then "$0.00 - $4.99"
             when ${revenue_tiers} = "5 to 19" then "$5.00 - $19.99"
@@ -62,6 +63,20 @@ view: +customer_lifetime_value_ndt {
             when ${revenue_tiers} = "500 to 999" then "$500.00 - $999.99"
         else "$1000.00 +" end;;
     label: "Lifetime Revenue Tiers"
+  }
+
+  dimension: revenue_tiers_sort {
+    type: number
+    hidden: yes
+    sql: case
+            when ${revenue_tiers} = "Below 5" then 1
+            when ${revenue_tiers} = "5 to 19" then 2
+            when ${revenue_tiers} = "20 to 49" then 3
+            when ${revenue_tiers} = "50 to 99" then 4
+            when ${revenue_tiers} = "100 to 499" then 5
+            when ${revenue_tiers} = "500 to 999" then 6
+            else 7
+       end;;
   }
 
   ## MEASURES ##

@@ -59,6 +59,12 @@ view: +order_items {
     convert_tz: no
     label: "Last Order Date"
   }
+  measure: order_sequence {
+    type: number
+    # hidden: yes
+    sql: ROW_NUMBER() OVER (PARTITION BY ${user_id}) ;;
+    label: "Order Sequence"
+  }
   measure: total_sale_price {
     description: "Total sales from items sold"
     type: sum

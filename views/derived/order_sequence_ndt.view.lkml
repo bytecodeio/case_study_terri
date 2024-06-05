@@ -7,6 +7,7 @@ view: order_sequence_ndt {
         column: id {}
         column: pop_date_field_date {}
         column: order_sequence {}
+        column: status {}
         bind_all_filters: yes
       }
     }
@@ -33,5 +34,11 @@ view: order_sequence_ndt {
       description: "Order sequence by user"
       type: number
       sql: ${TABLE}.order_sequence ;;
+    }
+    dimension: status {
+      label: "Order Status"
+      description: "Order status"
+      type: string
+      sql: ${TABLE}.status ;;
     }
   }

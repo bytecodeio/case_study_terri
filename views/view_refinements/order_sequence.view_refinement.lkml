@@ -27,6 +27,13 @@ view: +order_sequence_ndt {
     sql: ${next_order_date} is not null;;
   }
 
+  dimension: is_cancelled_returned {
+    label: "Cancelled or Returned Order (Yes/No)"
+    description: "Indicator for whether a purchase was cancelled or returned"
+    type: yesno
+    sql: ${status} IN ('Cancelled', 'Returned') ;;
+  }
+
   dimension: is_first_purchase {
     label: "First Purchase (Yes/No)"
     description: "Indicator for whether a purchase is a customer’s first purchase or not"
@@ -34,14 +41,19 @@ view: +order_sequence_ndt {
     sql: ${order_sequence} = 1 ;;
   }
 
+  dimension: is_one_time_purchase {
+    label: "One Time Purchase (Yes/No)"
+    description: "Indicator for whether a purchase is a one time purchase or not"
+    type: yesno
+    sql: ${order_sequence} = 1 and ${next_order_date} is null ;;
+  }
 
   ## MEASURES ##
-  measure: total_60_day_repeat_customers {
-    label: "Total 60 Day Repeat Customers"
-    description: "The percent of customers that have purchased from the website again within 60 days of a prior purchase"
-    type: count_distinct
-    filters: [days_between_orders: "<=60"]
-    sql: ${user_id} ;;
+
+  measure: 60_day_repeat_purchase_rate {
+    type: number
+    sql: ${total_60_day_repeat_customers}/${total_customers} ;;
+    value_format_name: percent_2
   }
 
   measure: average_days_between_orders {
@@ -57,5 +69,21 @@ view: +order_sequence_ndt {
     type: date
     sql: LEAD(${created},1) OVER(PARTITION BY ${user_id} ORDER BY ${created}) ;;
   }
+
+  measure: total_customers {
+    type: count_distinct
+    sql: ${user_id} ;;
+    label: "Total Customers"
+  }
+
+  measure: total_60_day_repeat_customers {
+    label: "Total 60 Day Repeat Customers"
+    description: "The percent of customers that have purchased from the website again within 60 days of a prior purchase"
+    type: count_distinct
+    filters: [days_between_orders: "<=60"]
+    sql: ${user_id} ;;
+  }
+
+
 
 }

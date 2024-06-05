@@ -2,10 +2,10 @@
 # which will be treated as the raw view file
 
 
-include: "/views/derived/customer_lifetime_value_ndt.view"
+include: "/views/derived/customer_lifetime_value_ndt_users.view"
 # include: "/views/pop_base/method2_base.view.lkml"
 
-view: +customer_lifetime_value_ndt {
+view: +customer_lifetime_value_ndt_users {
   # extends: [method2_base]
 
   ## DIMENSIONS ##
@@ -118,9 +118,17 @@ view: +customer_lifetime_value_ndt {
     label: "Repeat Customer Percentage"
   }
 
+  measure: total_active_users {
+    type: count_distinct
+    description: "Total # of active customers that purchased an item within the last 90 days"
+    sql: ${id} ;;
+    filters: [is_active_customer: "yes"]
+    label: "Total Active Customers"
+  }
+
   measure: total_customers {
     type: count_distinct
-    sql: ${user_id} ;;
+    sql: ${id} ;;
     label: "Total Customers"
   }
 
@@ -139,18 +147,10 @@ view: +customer_lifetime_value_ndt {
     label: "Total Lifetime Revenue"
   }
 
-  measure: total_active_users {
-    type: count_distinct
-    description: "Total # of active customers (purchased an item within the last 90 days)"
-    sql: ${user_id} ;;
-    filters: [is_active_customer: "yes"]
-    label: "Total Active Customers"
-  }
-
   measure: total_repeat_users {
     type: count_distinct
     description: "Total # of repeat customers"
-    sql: ${user_id} ;;
+    sql: ${id} ;;
     filters: [is_repeat_customer: "yes"]
     label: "Total Repeat Customers"
   }

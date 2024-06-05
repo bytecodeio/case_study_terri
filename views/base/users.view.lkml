@@ -28,6 +28,7 @@ view: users {
     label: "Country"
   }
   dimension_group: created {
+    hidden: yes
     type: time
     timeframes: [raw,
       time,
@@ -44,6 +45,7 @@ view: users {
       year]
     sql: ${TABLE}.created_at ;;
     label: "Created"
+    convert_tz: no
   }
   dimension: email {
     type: string

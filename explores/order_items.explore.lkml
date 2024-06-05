@@ -7,7 +7,7 @@ include: "/views/cross_view/order_inventory_items_cv.view"
 include: "/views/cross_view/order_items_users_cv.view"
 include: "/views/view_refinements/order_items.view_refinement.lkml"
 include: "/views/view_refinements/inventory_items.view_refinement.lkml"
-include: "/views/view_refinements/customer_lifetime_value.view_refinement.lkml"
+# include: "/views/view_refinements/customer_lifetime_value.view_refinement.lkml"
 
 
 explore: order_items {
@@ -34,11 +34,11 @@ explore: order_items {
     sql_on: ${products.distribution_center_id} = ${distribution_centers.id} ;;
     relationship: many_to_one
   }
-  join: customer_lifetime_value_ndt {
-    type: left_outer
-    sql_on: ${order_items.user_id} = ${customer_lifetime_value_ndt.user_id} ;;
-    relationship: many_to_one
-  }
+  # join: customer_lifetime_value_ndt {
+  #   type: left_outer
+  #   sql_on: ${order_items.user_id} = ${customer_lifetime_value_ndt.user_id} ;;
+  #   relationship: many_to_one
+  # }
   join: order_inventory_items_cv {
     relationship: one_to_one
     sql:  ;;

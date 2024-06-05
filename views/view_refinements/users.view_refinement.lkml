@@ -2,12 +2,13 @@
 # which will be treated as the raw view file
 
 include: "/views/base/users.view"
-include: "/views/pop_base/method6_base.view.lkml"
+include: "/views/pop_base/method3_base.view.lkml"
 
 view: +users {
-  extends: [method6_base]
+  extends: [method3_base]
   dimension_group: pop_date_field {
     sql: ${created_raw} ;;
+    group_label: "Customer Signup Date"
   }
 
   ## DIMENSIONS ##
@@ -23,6 +24,45 @@ view: +users {
     type: number
     sql: DATE_DIFF(CURRENT_DATE(),${created_date},day) ;;
     label: "Days from Signup"
+  }
+  dimension: dynamic_cohort_date {
+    type: string
+    label_from_parameter: date_granularity
+    sql:
+      {% if date_granularity._parameter_value == 'day' %}
+        ${days_signup_period}
+      {% elsif date_granularity._parameter_value == 'week' %}
+        ${weeks_signup_period}
+      {% elsif date_granularity._parameter_value == 'month' %}
+        ${months_signup_period}
+      {% elsif date_granularity._parameter_value == 'quarter' %}
+        ${quarters_signup_period}
+      {% else %}
+        ${days_signup_period}
+      {% endif %};;
+  }
+  dimension: dynamic_created_date {
+    type: string
+    label_from_parameter: date_granularity
+    sql:
+      {% if date_granularity._parameter_value == 'day' %}
+        ${created_date}
+      {% elsif date_granularity._parameter_value == 'week' %}
+        ${created_week}
+      {% elsif date_granularity._parameter_value == 'month' %}
+        ${created_month}
+      {% elsif date_granularity._parameter_value == 'quarter' %}
+        ${created_quarter}
+      {% else %}
+        ${created_date}
+      {% endif %};;
+  }
+  dimension_group: signup_period  {
+    type: duration
+    sql_start: ${created_date} ;;
+    sql_end: current_date() ;;
+    intervals: [day, week, month, quarter]
+    convert_tz: no
   }
   dimension: is_new_customer {
     type: yesno
@@ -42,9 +82,45 @@ view: +users {
   }
 
   ## MEASURES ##
+  measure: average_days_since_signup {
+    type: average
+    sql: ${days_from_signup} ;;
+    label: "Average Days Since Signup"
+  }
+  measure: average_months_since_signup {
+    type: average
+    sql: ${days_from_signup} ;;
+    label: "Average Months Since Signup"
+  }
   measure: total_users {
     type: count_distinct
     sql: ${id} ;;
     label: "Total Users"
+  }
+  measure: dynamic_sum {
+    type: sum
+    sql: ${TABLE}.{% parameter measure_to_add_up %} ;;
+    value_format_name: "decimal_0"
+  }
+
+  ## PARAMETERS ##
+  parameter: date_granularity {
+    type: unquoted
+    allowed_value: {
+      label: "By Day"
+      value: "day"
+    }
+    allowed_value: {
+      label: "By Week"
+      value: "week"
+    }
+    allowed_value: {
+      label: "By Month"
+      value: "month"
+    }
+    allowed_value: {
+      label: "By Quarter"
+      value: "quarter"
+    }
   }
 }

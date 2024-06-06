@@ -30,15 +30,15 @@ view: +users {
     label_from_parameter: date_granularity
     sql:
       {% if date_granularity._parameter_value == 'day' %}
-        ${days_signup_period}
+        DATE_DIFF(CURRENT_DATE(),${created_date},day)
       {% elsif date_granularity._parameter_value == 'week' %}
-        ${weeks_signup_period}
+        DATE_DIFF(CURRENT_DATE(),${created_date},week)
       {% elsif date_granularity._parameter_value == 'month' %}
-        ${months_signup_period}
+        DATE_DIFF(CURRENT_DATE(),${created_date},month)
       {% elsif date_granularity._parameter_value == 'quarter' %}
-        ${quarters_signup_period}
+        DATE_DIFF(CURRENT_DATE(),${created_date},quarter)
       {% else %}
-        ${days_signup_period}
+        DATE_DIFF(CURRENT_DATE(),${created_date},day)
       {% endif %};;
   }
   dimension: dynamic_created_date {

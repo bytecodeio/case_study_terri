@@ -109,10 +109,10 @@ view: method3_base {
     sql:
     {% if current_date_range._is_filtered %}
         CASE
-        WHEN {% condition current_date_range %} ${created_raw} {% endcondition %}
-        THEN DATE_DIFF( DATE({% date_start current_date_range %}), DATE(${created_date}), DAY) + 1
-        WHEN DATE(${created_date}) between ${period_2_start} and ${period_2_end}
-        THEN DATE_DIFF(${period_2_start}, DATE(${created_date}), DAY) + 1
+        WHEN {% condition current_date_range %} ${pop_date_field_raw} {% endcondition %}
+        THEN DATE_DIFF( DATE({% date_start current_date_range %}), DATE(${pop_date_field_date}), DAY) + 1
+        WHEN DATE(${pop_date_field_date}) between ${period_2_start} and ${period_2_end}
+        THEN DATE_DIFF(${period_2_start}, DATE(${pop_date_field_date}), DAY) + 1
         END
     {% else %} NULL
     {% endif %}
@@ -178,9 +178,9 @@ view: method3_base {
     sql:
         {% if current_date_range._is_filtered %}
             CASE
-            WHEN {% condition current_date_range %} ${created_raw} {% endcondition %}
+            WHEN {% condition current_date_range %} ${pop_date_field_raw} {% endcondition %}
             THEN 'This {% parameter compare_to %}'
-            WHEN DATE(${created_date}) between ${period_2_start} and ${period_2_end}
+            WHEN DATE(${pop_date_field_date}) between ${period_2_start} and ${period_2_end}
             THEN 'Last {% parameter compare_to %}'
             END
         {% else %}

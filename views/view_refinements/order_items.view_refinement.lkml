@@ -3,10 +3,10 @@
 
 
 include: "/views/base/order_items.view"
-include: "/views/pop_base/method3_base.view.lkml"
+include: "/views/pop_base/method7_base.view.lkml"
 
 view: +order_items {
-  extends: [method3_base]
+  extends: [method7_base]
 
   ## DIMENSIONS ##
   dimension_group: pop_date_field {
@@ -58,12 +58,6 @@ view: +order_items {
     sql: max(${created_date}) ;;
     convert_tz: no
     label: "Last Order Date"
-  }
-  measure: order_sequence {
-    type: number
-    # hidden: yes
-    sql: ROW_NUMBER() OVER (PARTITION BY ${user_id}) ;;
-    label: "Order Sequence"
   }
   measure: total_sale_price {
     description: "Total sales from items sold"

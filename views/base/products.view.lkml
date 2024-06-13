@@ -27,6 +27,7 @@ view: products {
   dimension: category {
     type: string
     sql: ${TABLE}.category ;;
+    drill_fields: [brand]
     label: "Category"
   }
   dimension: cost {

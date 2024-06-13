@@ -6,7 +6,7 @@
 view: method7_base {
 
   filter: date_filter {
-    view_label: "_PoP"
+    view_label: "_PoP {{ _view._name | replace: '_',' ' | capitalize}}"
     description: "Use this date filter in combination with the timeframes dimension for dynamic date filtering"
     type: date
     convert_tz: no
@@ -14,6 +14,7 @@ view: method7_base {
 
   dimension_group: pop_date_field {
     type: time
+    hidden: yes
     # sql: "Must be overwritten within a refinement or extension";;
     timeframes: [date,raw]
     convert_tz: no
@@ -51,7 +52,7 @@ view: method7_base {
 
 
   dimension: timeframes {
-    view_label: "_PoP"
+    view_label: "_PoP {{ _view._name | replace: '_',' ' | capitalize}}"
     type: string
     case: {
       when: {

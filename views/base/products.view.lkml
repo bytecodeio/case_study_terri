@@ -16,6 +16,10 @@ view: products {
     drill_fields: [category, sku]
     label: "Brand"
     link: {
+      label: "Brand Comparisons Dashboard"
+      url: "https://looker.bytecode.io/dashboards/6K9wPzBSBUyuDGk4YvYFaN?Brand+Selector={{ value | url_encode }}&Brand+Selector_={{ value | url_encode }}"
+    }
+    link: {
       label: "Google Link"
       url: "http://www.google.com/search?q={{ value }}"
     }
@@ -23,6 +27,15 @@ view: products {
       label: "Facebook Link"
       url: "http://www.facebook.com/search?q={{ value }}"
     }
+  }
+  dimension: brand_group {
+    type: string
+    sql: case
+          when {% condition brand_selector %} ${brand} {% endcondition %} then ${brand}
+          else 'Other Brands'
+        end;;
+    label: "Brand Group"
+    description: "Group created for brand comparison dashboard to group the selected brand and compare to the rest"
   }
   dimension: category {
     type: string
@@ -67,6 +80,11 @@ view: products {
     type: count
     drill_fields: [detail*]
     label: "Count"
+  }
+
+   # ----- Filters ------
+  filter: brand_selector {
+    suggest_dimension: brand
   }
 
   # ----- Sets of fields for drilling ------

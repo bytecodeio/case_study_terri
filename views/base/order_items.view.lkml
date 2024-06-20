@@ -88,6 +88,31 @@ view: order_items {
     label: "Total Orders"
   }
 
+## PARAMETERS ##
+  parameter: date_granularity {
+    type: unquoted
+    allowed_value: {
+      label: "By Day"
+      value: "day"
+    }
+    allowed_value: {
+      label: "By Week"
+      value: "week"
+    }
+    allowed_value: {
+      label: "By Month"
+      value: "month"
+    }
+    allowed_value: {
+      label: "By Quarter"
+      value: "quarter"
+    }
+    allowed_value: {
+      label: "By Year"
+      value: "year"
+    }
+  }
+
 
   # ----- Sets of fields for drilling ------
   set: detail {

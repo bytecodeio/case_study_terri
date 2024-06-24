@@ -9,7 +9,11 @@ include: "/views/derived/customer_lifetime_value_ndt_users.view"
 include: "/views/view_refinements/customer_lifetime_value.view_refinement.lkml"
 
 explore: users {
-  required_access_grants: [sales_access]
+  # required_access_grants: [sales_access]
+  access_filter: {
+    field: country
+    user_attribute: case_study_country
+  }
   label: "Customers"
   description: "Provides user behavior and attribute details"
 

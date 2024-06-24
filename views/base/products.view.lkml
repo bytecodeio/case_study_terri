@@ -17,7 +17,7 @@ view: products {
     label: "Brand"
     link: {
       label: "Brand Comparisons Dashboard"
-      url: "https://looker.bytecode.io/dashboards/6K9wPzBSBUyuDGk4YvYFaN?Brand+Selector={{ value | url_encode }}&Brand+Selector_={{ value | url_encode }}"
+      url: "https://looker.bytecode.io/dashboards/6K9wPzBSBUyuDGk4YvYFaN?Brand={{ value | url_encode }}&Category="
     }
     link: {
       label: "Google Link"

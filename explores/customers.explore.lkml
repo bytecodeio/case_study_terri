@@ -9,6 +9,7 @@ include: "/views/derived/customer_lifetime_value_ndt_users.view"
 include: "/views/view_refinements/customer_lifetime_value.view_refinement.lkml"
 
 explore: users {
+  required_access_grants: [sales_access]
   label: "Customers"
   description: "Provides user behavior and attribute details"
 

@@ -9,3 +9,8 @@ datagroup: case_study_terri_default_datagroup {
 }
 
 persist_with: case_study_terri_default_datagroup
+
+access_grant: sales_access {
+  user_attribute: case_study_department
+  allowed_values: ["sales","executive"]
+}

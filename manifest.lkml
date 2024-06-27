@@ -7,7 +7,7 @@ project_name: "case_study_terri"
 #   project: "name_of_other_project"
 # }
 
-
+#Automated code review Rules
 #LAMS
 #rule: K3{}
 #rule: K4{}
@@ -19,6 +19,5 @@ project_name: "case_study_terri"
 #rule: E1{}
 #rule: E7{}
 #rule: W1{}
-#
 #
 #

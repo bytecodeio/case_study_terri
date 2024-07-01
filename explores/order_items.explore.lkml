@@ -29,11 +29,11 @@ explore: order_items {
     sql_on: ${order_items.product_id} = ${products.id} ;;
     relationship: many_to_one
   }
-  join: distribution_centers {
-    type: left_outer
-    sql_on: ${products.distribution_center_id} = ${distribution_centers.id} ;;
-    relationship: many_to_one
-  }
+  # join: distribution_centers {
+  #   type: left_outer
+  #   sql_on: ${products.distribution_center_id} = ${distribution_centers.id} ;;
+  #   relationship: many_to_one
+  # }
   join: order_sequence {
     from: order_sequence_ndt
     type:left_outer

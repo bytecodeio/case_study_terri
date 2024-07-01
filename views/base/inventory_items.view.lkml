@@ -16,6 +16,7 @@ view: inventory_items {
     label: "Cost"
   }
   dimension_group: created {
+    hidden: yes
     type: time
     timeframes: [raw,
       time,
@@ -34,16 +35,19 @@ view: inventory_items {
     label: "Created"
   }
   dimension: product_brand {
+    hidden: yes
     type: string
     sql: ${TABLE}.product_brand ;;
     label: "Product Brand"
   }
   dimension: product_category {
+    hidden: yes
     type: string
     sql: ${TABLE}.product_category ;;
     label: "Product Category"
   }
   dimension: product_department {
+    hidden: yes
     type: string
     sql: ${TABLE}.product_department ;;
     label: "Product Department"
@@ -60,16 +64,19 @@ view: inventory_items {
     label: "Product ID"
   }
   dimension: product_name {
+    hidden: yes
     type: string
     sql: ${TABLE}.product_name ;;
     label: "Product Name"
   }
   dimension: product_retail_price {
+    hidden: yes
     type: number
     sql: ${TABLE}.product_retail_price ;;
     label: "Product Retail Price"
   }
   dimension: product_sku {
+    hidden: yes
     type: string
     sql: ${TABLE}.product_sku ;;
     label: "Product SKU"

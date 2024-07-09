@@ -26,20 +26,10 @@ view: +users {
     label: "Days from Signup"
   }
   dimension: dynamic_cohort_date {
-    type: string
-    label_from_parameter: date_granularity
+    type: number
+    label: "{{ date_granularity._parameter_value | capitalize }}s Since Signup"
     sql:
-      {% if date_granularity._parameter_value == 'day' %}
-        DATE_DIFF(CURRENT_DATE(),${created_date},day)
-      {% elsif date_granularity._parameter_value == 'week' %}
-        DATE_DIFF(CURRENT_DATE(),${created_date},week)
-      {% elsif date_granularity._parameter_value == 'month' %}
-        DATE_DIFF(CURRENT_DATE(),${created_date},month)
-      {% elsif date_granularity._parameter_value == 'quarter' %}
-        DATE_DIFF(CURRENT_DATE(),${created_date},quarter)
-      {% else %}
-        DATE_DIFF(CURRENT_DATE(),${created_date},day)
-      {% endif %};;
+        DATE_DIFF(CURRENT_DATE(),${created_date},{{ date_granularity._parameter_value }}) ;;
   }
   dimension: dynamic_created_date {
     type: string
@@ -106,6 +96,7 @@ view: +users {
   ## PARAMETERS ##
   parameter: date_granularity {
     type: unquoted
+    default_value: "month"
     allowed_value: {
       label: "By Day"
       value: "day"

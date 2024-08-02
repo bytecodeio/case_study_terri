@@ -1,7 +1,6 @@
 view: customer_lifetime_value_ndt {
   view_label: "Customer Lifetime Value"
 # If necessary, uncomment the line below to include explore_source.
-# include: "order_items.explore.lkml"
 
     derived_table: {
       explore_source: order_items {

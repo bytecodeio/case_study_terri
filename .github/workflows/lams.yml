@@ -1,0 +1,40 @@
+# This is a basic workflow to help you get started with Actions
+
+name: LAMS
+
+# Controls when the workflow will run
+on: 
+  push
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  # push:
+  #   branches: [ "main" ]
+  # pull_request:
+  #   branches: [ "main" ]
+
+jobs:
+  lams_job:
+    runs-on: ubuntu-latest
+    name: LAMS LookML Linter Job
+    steps:
+    - name: Checkout your LookML
+      uses: actions/checkout@v4
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: '16.x'
+    - name: Install LAMS
+      run: npm install -g @looker/look-at-me-sideways@3
+    - name: Run LAMS
+      # See [PRIVACY.md](https://github.com/looker-open-source/look-at-me-sideways/blob/master/PRIVACY.md)
+      run: lams --reporting=no
+    - name: Generate LAMS Markdown
+      if: always()
+      run: lams --reporting=no --output markdown
+    - name: Commit Markdown issues.md
+      if: always()
+      run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add issues.md
+          git commit -m "Update Issues Markdown"
+          git push

@@ -11,7 +11,7 @@ include: "/views/derived/order_sequence_ndt.view.lkml"
 
 
 explore: order_items {
-  label: "Order Items"
+  label: "Order Items - Test"
   description: "Provides detailed order information."
 
   join: users {

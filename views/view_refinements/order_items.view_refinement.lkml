@@ -121,4 +121,61 @@ order_items.created_month]
   }
 
 
+
+  measure: dynamic_measure {
+    label_from_parameter: measure_selector
+    type: number
+    sql:
+      {% if measure_selector._parameter_value == "total_sale_price" %} ${total_sale_price}
+      {% elsif measure_selector._parameter_value == "total_gross_revenue" %} ${total_gross_revenue}
+      {% else %} ${total_orders}
+      {% endif %};;
+  }
+
+
+  parameter: measure_selector {
+    type: unquoted
+    default_value: "total_sale_price"
+    allowed_value: {
+      label: "Sale Price"
+      value: "total_sale_price"
+    }
+    allowed_value: {
+      label: "Gross Revenue"
+      value: "total_gross_revenue"
+    }
+    allowed_value: {
+      label: "Orders"
+      value: "orders"
+    }
+  }
+
+  measure: dynamic_measure_2 {
+    label_from_parameter: measure_selector_2
+    type: number
+    sql:
+      {% if measure_selector_2._parameter_value == "total_sale_price" %} ${total_sale_price}
+      {% elsif measure_selector_2._parameter_value == "total_gross_revenue" %} ${total_gross_revenue}
+      {% else %} ${total_orders}
+      {% endif %};;
+  }
+
+
+  parameter: measure_selector_2 {
+    type: unquoted
+    default_value: "total_sale_price"
+    allowed_value: {
+      label: "Sale Price"
+      value: "total_sale_price"
+    }
+    allowed_value: {
+      label: "Gross Revenue"
+      value: "total_gross_revenue"
+    }
+    allowed_value: {
+      label: "Orders"
+      value: "orders"
+    }
+  }
+
 }

@@ -18,7 +18,7 @@ datagroup: test_schedule_datagroup {
   max_cache_age: "24 hours"
 }
 
-persist_with: case_study_terri_default_datagroup
+persist_with: test_schedule_datagroup
 
 access_grant: sales_access {
   user_attribute: case_study_department

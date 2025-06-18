@@ -17,7 +17,6 @@ view: +customer_lifetime_value_ndt_users {
     type: number
     description: "Calculates the days from the last order made by a customer"
     sql: date_diff(current_date(), ${last_order_date_date}, day) ;;
-    convert_tz: no
     label: "Days Since Last Order"
   }
 

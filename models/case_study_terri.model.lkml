@@ -8,6 +8,16 @@ datagroup: case_study_terri_default_datagroup {
   max_cache_age: "1 hour"
 }
 
+datagroup: test_schedule_datagroup {
+  sql_trigger:
+    SELECT
+      CASE
+        WHEN CURRENT_DATE <= DATE('2025-06-18') THEN CURRENT_DATE
+        ELSE NULL
+      END ;;
+  max_cache_age: "24 hours"
+}
+
 persist_with: case_study_terri_default_datagroup
 
 access_grant: sales_access {
